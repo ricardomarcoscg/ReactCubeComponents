@@ -1,0 +1,78 @@
+.input-label {
+  font-size: 14px;
+  color: #000;
+  display: block;
+  font-weight: 600;
+  padding-bottom: 2PX;
+}
+
+.label-required::after {
+  content: '*';
+  color: #DA1E28;
+  margin-left: 4px;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid #545D64;
+  border-radius: 0;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.form-control {
+  width: 100%;
+  padding: 6px 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000;
+  background-color: #fff;
+  border: none;
+}
+
+.form-control:focus {
+  border-bottom-color: #3372B8;
+  outline: 0;
+  box-shadow: none;
+}
+
+.form-control:disabled {
+  background-color: #e9ecef;
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+.form-control::placeholder {
+  color: #545D64;
+}
+
+.show-msg-hint {
+  color: #DA1E28;
+  font-size: 12px;
+  display: block;
+}
+
+.hide-msg-hint {
+  display: none;
+}
+
+/* Estilo para input com erro */
+.input-group.error {
+  border-bottom-color: #dc3545;
+}
+
+.input-group.error:focus {
+  border-bottom-color: #dc3545;
+  box-shadow: none;
+}
+
+.input-group.error span {
+  color: #dc3545;
+}
+
+.input-hint {
+  margin-top: 8px;
+  min-height: 18px;
+} 

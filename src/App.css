@@ -1,0 +1,36 @@
+.formulario {
+  display: block;
+  padding: 20px;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.MuiBox-root {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.MuiBox-root > div {
+  flex: 1 1 300px;
+  min-width: 0;
+}
+
+.title-page {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+
+.title-page .description {
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+}
+
+.title-page .title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #000;
+}
