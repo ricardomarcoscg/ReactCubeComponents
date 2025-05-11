@@ -35,32 +35,32 @@ function App() {
             <div className='title'>Exemplo de formulário de cadastro</div>
             <div className='description'>Este formulário é um exemplo de como usar o a biblioteca CUBE e o componente CubeInput.</div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-12 gap-4">
-            <div className='col-span-3'>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+            <div className='w-full md:col-span-3'>
               <CubeInput
                 element={inputNome}
                 form={form}
               />
             </div>
-            <div className='col-span-3'>
+            <div className='w-full md:col-span-3'>
               <CubeInput
                 element={inputCPF}
                 form={form}
               />
             </div>
-            <div className='col-span-3'>
+            <div className='w-full md:col-span-3'>
               <CubeInput
                 element={inputTelefone}
                 form={form}
               />
             </div>
-            <div className='col-span-3'>
+            <div className='w-full md:col-span-3'>
               <CubeInput
                 element={inputEmail}
                 form={form}
               />
             </div>
-            <div className='col-span-12'>
+            <div className='w-full md:col-span-12'>
               <CubeInput
                 element={inputEndereco}
                 form={form}

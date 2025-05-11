@@ -21,8 +21,8 @@ export const CubeInputExample: React.FC = () => {
             <div className='title'>Exemplo de formulário de cadastro</div>
             <div className='description'>Este é um exemplo de formulário de cadastro com campos de entrada de dados.</div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-12 gap-4">
-            <div className='col-span-3'>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+            <div className='w-full md:col-span-3'>
               <CubeInput
                 element={createCPFInput(
                   'cpf',
@@ -33,7 +33,7 @@ export const CubeInputExample: React.FC = () => {
                 form={form}
               />
             </div>
-            <div className='col-span-3'>
+            <div className='w-full md:col-span-3'>
               <CubeInput
                 element={createPhoneInput(
                   'phone',
@@ -44,7 +44,7 @@ export const CubeInputExample: React.FC = () => {
                 form={form}
               />
             </div>
-            <div className='col-span-3'>
+            <div className='w-full md:col-span-3'>
               <CubeInput
                 element={createCEPInput(
                   'cep',
