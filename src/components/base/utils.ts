@@ -27,4 +27,38 @@ export const validateCPF = (cpf: string): boolean => {
   if (digit2 !== parseInt(cpf.charAt(10))) return false;
 
   return true;
+};
+
+export const applyMask = (value: string, mask: string): string => {
+  let result = '';
+  let valueIndex = 0;
+
+  // Remove caracteres não numéricos do valor
+  const numericValue = value.replace(/\D/g, '');
+
+  // Aplica a máscara
+  for (let i = 0; i < mask.length && valueIndex < numericValue.length; i++) {
+    if (mask[i] === '0') {
+      result += numericValue[valueIndex];
+      valueIndex++;
+    } else {
+      result += mask[i];
+    }
+  }
+
+  return result;
+};
+
+export const getMaskPattern = (mask: string): RegExp => {
+  // Converte a máscara em um padrão regex
+  const pattern = mask
+    .replace(/0/g, '\\d')
+    .replace(/\./g, '\\.')
+    .replace(/-/g, '\\-')
+    .replace(/\//g, '\\/')
+    .replace(/\(/g, '\\(')
+    .replace(/\)/g, '\\)')
+    .replace(/ /g, '\\s');
+  
+  return new RegExp(`^${pattern}$`);
 }; 

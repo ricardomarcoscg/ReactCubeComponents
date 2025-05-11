@@ -1,8 +1,7 @@
-import { useForm } from 'react-hook-form';
 import './App.css';
+import { useForm } from 'react-hook-form';
 import { CubeInput } from './components/Input/cbInput';
 import { createCPFInput, createEmailInput, createInput, createPhoneInput } from './components/Input/cbInputFactory';
-import { Box } from '@mui/material';
 
 function App() {
   const form = useForm({
@@ -17,14 +16,15 @@ function App() {
   const inputNome = createInput('nome', 'NOME', 'text', 'DIGITE SEU NOME')
     .required('Nome é obrigatório');
 
-  const inputEndereco = createInput('endereco', 'ENDEREÇO', 'text', 'DIGITE SEU ENDEREÇO')
-    .required('Endereço é obrigatório');
-
-  const inputEmail = createEmailInput('email', 'EMAIL', 'email', 'DIGITE SEU EMAIL');
-
-  const inputCPF = createCPFInput('cpf', 'CPF', 'text', 'DIGITE SEU CPF');
+  const inputCPF = createCPFInput('cpf', 'CPF', 'text', 'DIGITE SEU CPF')
+    .required('CPF é obrigatório');
 
   const inputTelefone = createPhoneInput('telefone', 'TELEFONE', 'text', 'DIGITE SEU TELEFONE');
+
+  const inputEmail = createEmailInput('email', 'EMAIL', 'email', 'DIGITE SEU EMAIL')
+    .required('Email é obrigatório');
+
+  const inputEndereco = createInput('endereco', 'ENDEREÇO', 'text', 'DIGITE SEU ENDEREÇO');
 
   return (
     <div className="App">
@@ -32,7 +32,12 @@ function App() {
         <div className="formulario">
           <div className='title-page'>
             <div className='title'>Exemplo de formulário de cadastro</div>
-            <div className='description'>Este é um exemplo de formulário de cadastro com campos de entrada de dados.</div>
+            <div className='description'>Este formulário é um exemplo de como usar o componente CubeInput utilizando o factory pattern para criar os inputs.</div>
+            <br />
+            <div className='description'>Os inputs são criados com o factory pattern para facilitar a criação de inputs personalizados.</div>
+            <div className='description'>Criando os inputs com o factory pattern, estes adicionam os controles do form do react-hook-form para validação e máscaras automaticamente.</div>
+            <br />
+            <div className='description'>Quando todos os inputs estão preenchidos, o botão de submit é habilitado e ao clicar em enviar o sistema exibe os valores do formulário no console.</div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-12 gap-4">
             <div className='col-span-3'>
@@ -53,15 +58,15 @@ function App() {
                 form={form}
               />
             </div>
-            <div className='col-span-9'>
-              <CubeInput
-                element={inputEndereco}
-                form={form}
-              />
-            </div>
             <div className='col-span-3'>
               <CubeInput
                 element={inputEmail}
+                form={form}
+              />
+            </div>
+            <div className='col-span-12'>
+              <CubeInput
+                element={inputEndereco}
                 form={form}
               />
             </div>

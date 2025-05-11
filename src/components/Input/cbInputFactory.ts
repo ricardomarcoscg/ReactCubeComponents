@@ -1,5 +1,5 @@
+import { getMaskPattern } from '../base/utils';
 import { InputElement } from './cbInput';
-import { validateCPF } from '../base/utils';
 
 export const createInput = (
   name: string,
@@ -29,31 +29,22 @@ export const createDisabledInput = (
   return input;
 };
 
-export const createMaskedInput = (
-  name: string,
-  label: string,
-  type: string = 'text',
-  mask: string,
-  placeHolder?: string
-): InputElement => {
-  return createInput(name, label, type, placeHolder).setMask(mask);
-};
-
 export const createCPFInput = (
   name: string,
   label: string,
   type: string = 'text',
   placeHolder?: string
 ): InputElement => {
+  const mask = '000.000.000-00';
   return createInput(name, label, type, placeHolder)
-    .setMask('000.000.000-00')
+    .setMask(mask)
+    .setMaxLength(14)
     .addValidator('pattern', {
       pattern: {
-        value: /^\d{3}\.\d{3}\.\d{3}-\d{2}$/,
-        message: 'Informe um CPF válido com a pontuação correta'
+        value: getMaskPattern(mask),
+        message: 'CPF inválido'
       }
-    })
-    .setMaxLength(14);
+    });
 };
 
 export const createInscricaoEstadualInput = (
@@ -62,11 +53,12 @@ export const createInscricaoEstadualInput = (
   type: string = 'text',
   placeHolder?: string
 ): InputElement => {
+  const mask = '00.000.000-0';
   return createInput(name, label, type, placeHolder)
-    .setMask('00.000.000-0')
+    .setMask(mask)
     .addValidator('pattern', {
       pattern: {
-        value: /^\d{2}\.\d{3}\.\d{3}-\d{1}$/,
+        value: getMaskPattern(mask),
         message: 'Inscrição Estadual inválida'
       }
     });
@@ -78,14 +70,32 @@ export const createCNPJInput = (
   type: string = 'text',
   placeHolder?: string
 ): InputElement => {
+  const mask = '00.000.000/0000-00';
   return createInput(name, label, type, placeHolder)
-    .setMask('00.000.000/0000-00')
+    .setMask(mask)
     .addValidator('pattern', {
       pattern: {
-        value: /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/,
+        value: getMaskPattern(mask),
         message: 'CNPJ inválido'
       }
     });
+};
+
+export const createCPFCNPJInput = (
+  name: string,
+  label: string,
+  type: string = 'text',
+  placeHolder?: string
+): InputElement => {
+  const input = createInput(name, label, type, placeHolder);
+  input.setMask((value: string) => value.length > 11 ? '00.000.000/0000-00' : '000.000.000-00');
+  input.addValidator('pattern', {
+    pattern: {
+      value: /^(\d{3}\.\d{3}\.\d{3}-\d{2}|\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2})$/,
+      message: 'CPF/CNPJ inválido'
+    }
+  });
+  return input;
 };
 
 export const createCEPInput = (
@@ -94,12 +104,13 @@ export const createCEPInput = (
   type: string = 'text',
   placeHolder?: string
 ): InputElement => {
+  const mask = '00.000-000';
   return createInput(name, label, type, placeHolder)
-    .setMask('00.000-000')
+    .setMask(mask)
     .addValidator('pattern', {
       pattern: {
-        value: /^\d{5}-\d{3}$/,
-        message: 'CEP inválido',  
+        value: getMaskPattern(mask),
+        message: 'CEP inválido'
       }
     });
 };
@@ -125,13 +136,14 @@ export const createPhoneInput = (
   type: string = 'text',
   placeHolder?: string
 ): InputElement => {
+  const mask = '(00) 00000-0000';
   return createInput(name, label, type, placeHolder)
-    .setMask('(00) 00000-0000')
+    .setMask(mask)
     .setMaxLength(15)
     .addValidator('pattern', {
       pattern: {
-        value: /^\(\d{2}\) \d{5}-\d{4}$/,
-        message: 'Informe um telefone válido. Exemplo: (00) 00000-0000'
+        value: getMaskPattern(mask),
+        message: 'Telefone inválido'
       }
     });
 }; 

@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import { Controller, RegisterOptions } from 'react-hook-form';
 import { BaseElement } from '../base/element.component';
-import { CubeInputInterface, InputElementProps } from './types';
+import { CubeInputInterface, InputElementProps } from './cbTypes';
+import { applyMask } from '../base/utils';
 import './cbInputStyle.css';
 
 export class InputElement extends BaseElement {
@@ -122,6 +123,19 @@ export const CubeInput: React.FC<CubeInputInterface> = ({ element, form }) => {
     }
   }, [element.defaultValue, element.name, form]);
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, onChange: (value: string) => void) => {
+    const value = e.target.value;
+    let maskedValue = value;
+
+    if (element.mask) {
+      const mask = typeof element.mask === 'function' ? element.mask(value) : element.mask;
+      maskedValue = applyMask(value, mask);
+    }
+
+    onChange(maskedValue);
+    form.trigger(element.name);
+  };
+
   return (
     <div className="cube-input">
       <div className={`input-label ${element.isRequired() && !element.disabled ? 'label-required' : ''}`}>
@@ -139,10 +153,7 @@ export const CubeInput: React.FC<CubeInputInterface> = ({ element, form }) => {
                 {...field}
                 ref={inputRef}
                 value={field.value || ''}
-                onChange={(e) => {
-                  field.onChange(e);
-                  form.trigger(element.name);
-                }}
+                onChange={(e) => handleChange(e, field.onChange)}
                 onBlur={(e) => {
                   field.onBlur();
                   form.trigger(element.name);
