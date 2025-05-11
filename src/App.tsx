@@ -19,7 +19,8 @@ function App() {
   const inputCPF = createCPFInput('cpf', 'CPF', 'text', 'DIGITE SEU CPF')
     .required('CPF é obrigatório');
 
-  const inputTelefone = createPhoneInput('telefone', 'TELEFONE', 'text', 'DIGITE SEU TELEFONE');
+  const inputTelefone = createPhoneInput('telefone', 'TELEFONE', 'text', 'DIGITE SEU TELEFONE')
+    .required('Telefone é obrigatório');
 
   const inputEmail = createEmailInput('email', 'EMAIL', 'email', 'DIGITE SEU EMAIL')
     .required('Email é obrigatório');
@@ -29,15 +30,10 @@ function App() {
   return (
     <div className="App">
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="formulario">
+        <div className="rc-container">
           <div className='title-page'>
             <div className='title'>Exemplo de formulário de cadastro</div>
-            <div className='description'>Este formulário é um exemplo de como usar o componente CubeInput utilizando o factory pattern para criar os inputs.</div>
-            <br />
-            <div className='description'>Os inputs são criados com o factory pattern para facilitar a criação de inputs personalizados.</div>
-            <div className='description'>Criando os inputs com o factory pattern, estes adicionam os controles do form do react-hook-form para validação e máscaras automaticamente.</div>
-            <br />
-            <div className='description'>Quando todos os inputs estão preenchidos, o botão de submit é habilitado e ao clicar em enviar o sistema exibe os valores do formulário no console.</div>
+            <div className='description'>Este formulário é um exemplo de como usar o a biblioteca CUBE e o componente CubeInput.</div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-12 gap-4">
             <div className='col-span-3'>
@@ -71,7 +67,15 @@ function App() {
               />
             </div>
           </div>
-          <button type="submit">Enviar</button>
+          <div className='rc-form-actions'>
+            <button className='rc-btn-primary' type="submit" disabled={!form.formState.isValid}>Enviar</button>
+          </div>
+          <div className='form-values'>
+            <div className='form-values-title'>Valores do formulário</div>
+            <div className='form-values-content'>
+              <pre>{JSON.stringify(form.getValues(), null, 2)}</pre>
+            </div>
+          </div>
         </div>
       </form>
     </div>
