@@ -2,6 +2,7 @@ import './App.css';
 import { useForm } from 'react-hook-form';
 import { CubeInput } from './components/Input/cbInput';
 import { createCPFInput, createEmailInput, createInput, createPhoneInput } from './components/Input/cbInputFactory';
+import logo from './assets/logo.svg';
 
 function App() {
   const form = useForm({
@@ -30,9 +31,16 @@ function App() {
   return (
     <div className="App">
       <form onSubmit={form.handleSubmit(onSubmit)}>
+        <div className='rc-header'>
+          <img src={logo} alt="Logo" />
+          <div className='rc-header-title'>
+            <div className='title-text'>UX CUBE</div>
+            <div className='subtitle-text'>Biblioteca CUBO - Exemplo de implementação em React</div>
+          </div>
+        </div>
         <div className="rc-container">
           <div className='title-page'>
-            <div className='title'>Exemplo de formulário de cadastro</div>
+            <div className='title'>Formulário de cadastro</div>
             <div className='description'>Este formulário é um exemplo de como usar o a biblioteca CUBE e o componente CubeInput.</div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
