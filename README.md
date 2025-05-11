@@ -1,46 +1,83 @@
-# Getting Started with Create React App
+# Cube Components Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este é um projeto de demonstração da utilização dos componentes da biblioteca Cube, especificamente o componente CubeInput em React. O projeto mostra como implementar formulários responsivos com validação e máscaras de entrada.
 
-## Available Scripts
+## Tecnologias Utilizadas
 
-In the project directory, you can run:
+- **React**: Biblioteca JavaScript para construção de interfaces
+- **TypeScript**: Superset JavaScript com tipagem estática
+- **React Hook Form**: Biblioteca para gerenciamento de formulários
+- **Tailwind CSS**: Framework CSS utilitário para estilização
+- **Material Symbols**: Biblioteca de ícones do Google
 
-### `npm start`
+## Componentes Demonstrados
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### CubeInput
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+O componente CubeInput é um input personalizado que oferece:
 
-### `npm test`
+- Validação de campos
+- Máscaras de entrada (CPF, CNPJ, Telefone, CEP, etc.)
+- Suporte a ícones
+- Mensagens de erro personalizadas
+- Layout responsivo
+- Integração com React Hook Form
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Exemplo de Uso
 
-### `npm run build`
+```typescript
+const inputCPF = createCPFInput('cpf', 'CPF', 'text', 'Digite seu CPF')
+  .required('CPF é obrigatório');
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<CubeInput
+  element={inputCPF}
+  form={form}
+/>
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Tipos de Input Disponíveis
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Input Texto Simples
+- Input CPF
+- Input CNPJ
+- Input CPF/CNPJ
+- Input Telefone
+- Input CEP
+- Input Email
+- Input com Máscara Personalizada
 
-### `npm run eject`
+## Layout Responsivo
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+O projeto utiliza Tailwind CSS para criar um layout responsivo que se adapta a diferentes tamanhos de tela:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Mobile: Campos empilhados verticalmente
+- Desktop: Campos distribuídos em grid de 12 colunas
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Autor
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Ricardo Marcos Gonçalves Filho**  
+Ex/UI Designer e Desenvolvedor Front End Senior  
+UX Cube
 
-## Learn More
+### Contato
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Email**: ricardomarcoscg@gmail.com
+- **Telefone**: (67) 98444-8453
+- **LinkedIn**: [Ricardo Marcos Gonçalves Filho](https://www.linkedin.com/in/ricardo-marcos-gon%C3%A7alves-filho-9a113990/)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Instalação
+
+```bash
+# Clone o repositório
+git clone [url-do-repositorio]
+
+# Instale as dependências
+npm install
+
+# Inicie o servidor de desenvolvimento
+npm start
+```
+
+## Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
